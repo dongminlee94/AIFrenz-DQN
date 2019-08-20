@@ -26,7 +26,7 @@ parser.add_argument('--update_target', type=int, default=100)
 parser.add_argument('--max_iter_num', type=int, default=1000)
 parser.add_argument('--log_interval', type=int, default=10)
 parser.add_argument('--goal_score', type=int, default=400)
-parser.add_argument('--tensorboard_flag', type=str, default=False)
+parser.add_argument('--tensorboard_flag', type=str, default=True)
 parser.add_argument('--logdir', type=str, default='./logs',
                     help='tensorboard logs directory')
 args = parser.parse_args()
@@ -36,11 +36,11 @@ class QNet(nn.Module):
     def __init__(self, state_size, action_size, args):
         super(QNet, self).__init__()
         self.fc1 = nn.Linear(state_size, args.hidden_size)
-        self.fc3 = nn.Linear(args.hidden_size, action_size)
+        self.fc2 = nn.Linear(args.hidden_size, action_size)
 
     def forward(self, x):
         x = torch.tanh(self.fc1(x))
-        q_values = self.fc3(x)
+        q_values = self.fc2(x)
 
         return q_values
 
