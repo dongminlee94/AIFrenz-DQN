@@ -1,1 +1,1 @@
-# AIFrenz_DQN 
+# AIFrenz-DQN
